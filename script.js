@@ -5,7 +5,7 @@ let computerScore = 0
 // generates computer choice randomly
 function getComputerChoice() {
 
-    const randomNumber = Math.floor(Math.random() * 3 + 1);
+    let randomNumber = Math.floor(Math.random() * 3 + 1);
 
     switch (randomNumber) {
         case 1:
@@ -22,14 +22,13 @@ function getComputerChoice() {
 
 // prompts user for their choice
 function getPlayerChoice() {
-    userChoice = prompt('Please enter your choice');
-    upperChoice = userChoice.toUpperCase();
+    let userChoice = prompt('Please enter your choice');
+    let upperChoice = userChoice.toUpperCase();
     return upperChoice
 }
 
 // calls the above get functions to define variables for the next funciton
-const computerSelection = getComputerChoice()
-const playerSelection = getPlayerChoice()
+
 
 // function to play a singular round, need to work on score keeping
 function playRound(computerSelection, playerSelection) {
@@ -40,7 +39,7 @@ function playRound(computerSelection, playerSelection) {
         console.log((`You lose! ${computerSelection} beats ${playerSelection}!`));
         return computerScore++;
     } else if (playerSelection === 'ROCK' && computerSelection === 'ROCK' || playerSelection === 'PAPER' && computerSelection === 'PAPER' || playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS') {
-        return `It's a tie! Both players chose ${playerSelection}.`;
+        console.log( `It's a tie! Both players chose ${playerSelection}.`);
     }
     else {
         return ('Your choice is unrecognized. Please enter Rock, Paper, or Scissors.');
@@ -64,16 +63,28 @@ function gameOver(){
 
 // 5 round game that keeps track of scores and declares winner at the end 
 function playGame() {
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
     playRound(computerSelection, playerSelection);
-
+    console.log(`Your score is ${userScore}. The computer's score is ${computerScore}`);
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
     playRound(computerSelection, playerSelection);
-  
+    console.log(`Your score is ${userScore}. The computer's score is ${computerScore}`);
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
     playRound(computerSelection, playerSelection);
-
+    console.log(`Your score is ${userScore}. The computer's score is ${computerScore}`);
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
     playRound(computerSelection, playerSelection);
-
+    console.log(`Your score is ${userScore}. The computer's score is ${computerScore}`);
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
     playRound(computerSelection, playerSelection);
-
+    console.log(`Your score is ${userScore}. The computer's score is ${computerScore}`);
+    
+    gameOver();
 }
 
 playGame();
