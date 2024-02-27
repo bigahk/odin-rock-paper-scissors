@@ -1,7 +1,8 @@
-// create function getComputerChoice: randomly return Rock, Paper, or Scissors
+// global variables for user score?
+let userScore = 0
+let computerScore = 0
 
-//need it to pick one of three options, array?
-
+// generates computer choice randomly
 function getComputerChoice() {
 
     const randomNumber = Math.floor(Math.random() * 3 + 1);
@@ -19,45 +20,60 @@ function getComputerChoice() {
     }
 }
 
-//must create a playerSelection function that accepts all forms of capitalization for their answer
-//prompt user for input (R,P,S)
-//attach this response to a variable within the function
-//return a message correcting them if they do not put in some form of rock, paper, or scissors
-
+// prompts user for their choice
 function getPlayerChoice() {
     userChoice = prompt('Please enter your choice');
     upperChoice = userChoice.toUpperCase();
     return upperChoice
 }
 
+// calls the above get functions to define variables for the next funciton
+const computerSelection = getComputerChoice()
+const playerSelection = getPlayerChoice()
 
+// function to play a singular round, need to work on score keeping
 function playRound(computerSelection, playerSelection) {
-    if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS' || playerSelection === 'PAPER' && computerSelection=== 'ROCK' || playerSelection === 'SCISSORS' && computerSelection === 'PAPER') {
-        return(`You win! ${playerSelection} beats ${computerSelection}!`);
+    if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS' || playerSelection === 'PAPER' && computerSelection === 'ROCK' || playerSelection === 'SCISSORS' && computerSelection === 'PAPER') {
+        console.log(`You win! ${playerSelection} beats ${computerSelection}!`)
+        return userScore++;
     } else if (playerSelection === 'ROCK' && computerSelection === 'PAPER' || playerSelection === 'PAPER' && computerSelection === 'SCISSORS' || playerSelection === 'SCISSORS' && computerSelection === 'ROCK') {
-        return (`You lose! ${computerSelection} beats ${playerSelection}!`);
+        console.log((`You lose! ${computerSelection} beats ${playerSelection}!`));
+        return computerScore++;
     } else if (playerSelection === 'ROCK' && computerSelection === 'ROCK' || playerSelection === 'PAPER' && computerSelection === 'PAPER' || playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS') {
-        return (`It's a tie! Both players chose ${playerSelection}.`)
+        return `It's a tie! Both players chose ${playerSelection}.`;
     }
     else {
         return ('Your choice is unrecognized. Please enter Rock, Paper, or Scissors.');
     }
 }
 
-//create a function that plays the user against the computer
-
-const computerSelection = getComputerChoice()
-const playerSelection = getPlayerChoice()
-
-//console.log(playRound(computerSelection, playerSelection))
-
-function playGame() {
-    let round = playRound(computerSelection, playerSelection)
-    
-    console.log(round);
-    console.log(round);
-    console.log(round);
-    console.log(round);
-    console.log(round);
+// helper functions, what do I need? if..else for when game is over to determine winner 
+function gameOver(){
+    if(computerScore > userScore) {
+        console.log(`You lose! The computer won ${computerScore} rounds.`);
+    } else if (userScore > computerScore) {
+        console.log(`You win! You won ${userScore} rounds to the computer's ${computerScore}`);
+    } else {
+        console.log('It is a tie! How did you manage that?');
+    }
 }
-console.log(playGame());
+
+
+
+
+
+// 5 round game that keeps track of scores and declares winner at the end 
+function playGame() {
+    playRound(computerSelection, playerSelection);
+
+    playRound(computerSelection, playerSelection);
+  
+    playRound(computerSelection, playerSelection);
+
+    playRound(computerSelection, playerSelection);
+
+    playRound(computerSelection, playerSelection);
+
+}
+
+playGame();
