@@ -73,7 +73,7 @@ function gameOver() {
     if (computerScore === 5) {
         alert(`GAME OVER! You lose! The computer won has beat you to 5.`);
     } else if (userScore === 5) {
-        console.log(`You win! You won 5 rounds before the computer could!`);
+        alert(`You win! You won 5 rounds before the computer could!`);
     }
 };
 
