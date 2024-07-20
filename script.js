@@ -41,11 +41,12 @@ userChoice.addEventListener('click', (event) => {
             break;
 
     }
-    let computerSelection = getComputerChoice();
 
+    let computerSelection = getComputerChoice();
 
     playRound(computerSelection, playerSelection);
     document.querySelector('#total').textContent = `User Score: ${userScore}   Computer Score: ${computerScore}`; //fills in the total score div
+    gameOver();
 });
 
 
@@ -67,16 +68,14 @@ function playRound(computerSelection, playerSelection) {
 
 
 
-// helper functions, what do I need? if..else for when game is over to determine winner <- unchanged and unused for this part
+// alerts user who reaches 5 first
 function gameOver() {
-    if (computerScore > userScore) {
-        console.log(`You lose! The computer won ${computerScore} rounds.`);
-    } else if (userScore > computerScore) {
-        console.log(`You win! You won ${userScore} rounds to the computer's ${computerScore}`);
-    } else {
-        console.log('It is a tie! How did you manage that?');
+    if (computerScore === 5) {
+        alert(`GAME OVER! You lose! The computer won has beat you to 5.`);
+    } else if (userScore === 5) {
+        console.log(`You win! You won 5 rounds before the computer could!`);
     }
-}
+};
 
 
 
